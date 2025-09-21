@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const posts = getAllPostSlugs();
-  return posts;
+  return posts.map(post => ({
+    slug: post.params.slug,
+  }));
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
